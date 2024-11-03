@@ -13,11 +13,24 @@ output:
 
 I am interested in exploring data related to weather and its impact on people's mood. I think this could be interesting and the results may be relatable to many people.
 
-How does the month impact the pressure at the time of a hurrican?
-The latter the month is (between the months of 6-10) the higher the pressure at the time of a hurrican. The reason why this happens is because peak hurricane time is around late september early october.
-The explanatory variable of interest is the month that it is when a specific hurricane occurs. It is measured based on the date of when the hurrican starts.
+How does the month impact the pressure at the time of a hurricane?
+The later the month is (between the months of 6-10) the higher the pressure at the time of a hurricane. The reason why this happens is because peak hurricane time is around late september early october.
+The explanatory variable of interest is the month that it is when a specific hurricane occurs. It is measured based on the date of when the hurricane starts.
 The outcome variable is the pressure of the center of the hurricane. It is measured in milibars.
-What would support it is if as the pressure of the hurracane increased at the same rate of the months changing. What would disprove it is as the months passed the pressure of a hurricane decreased too.
+What would support it is if as the pressure of the hurricane increased at the same rate of the months changing. What would disprove it is as the months passed the pressure of a hurricane decreased too.
 https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download
 
+```{r}
+storms_data <- read.csv("data/storms.csv")
+
+storms_data
+```
+```{r}
+library(tidyverse)
+storms_data |>
+  ggplot(data = storms,
+       mapping = aes(x = month)) + 
+  geom_bar()
+
+```
 

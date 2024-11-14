@@ -20,17 +20,77 @@ The outcome variable is the pressure of the center of the hurricane. It is measu
 What would support it is if as the pressure of the hurricane increased at the same rate of the months changing. What would disprove it is as the months passed the pressure of a hurricane decreased too.
 https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download
 
+
+Discussion
+Overall there was a correlation found between pressure and the month that the hurricane occured. As it became later in the year starting in June the pressure decreased until October when there were less hurricanes and the pressure increased.
+```{r}
+file.exists("data/storms.csv")
+```
+
 ```{r}
 storms_data <- read.csv("data/storms.csv")
-
 storms_data
 ```
 ```{r}
 library(tidyverse)
+library(knitr)
 storms_data |>
   ggplot(data = storms,
        mapping = aes(x = month)) + 
-  geom_bar()
+  geom_bar() + 
+  labs(
+    title = "Number of Hurricanes that Occur each month",
+    x = "Month that Hurricane Occurs",
+    y = "Amount of Hurricanes Recorded"
+  ) 
 
+
+```
+
+
+```{r}
+outcome_month_7 <- storms_data |> 
+  filter(month == 7) |> 
+  summarize(
+    month_7_mean = mean(pressure, na.rm = TRUE)
+  )
+
+outcome_month_7 |>
+knitr::kable(caption = "Month 7 Pressure Average")
+```
+
+
+
+
+
+```{r}
+
+
+outcome_month_8 <- storms_data |> 
+  filter(month == 8) |> 
+  summarize(
+    month_8_mean = mean(pressure, na.rm = TRUE)
+  )
+outcome_month_8 |>
+knitr::kable(caption = "Month 8 Pressure Average")
+```
+```{r}
+outcome_month_9 <- storms_data |> 
+  filter(month == 9) |> 
+  summarize(
+    month_9_mean = mean(pressure, na.rm = TRUE)
+  )
+outcome_month_9 |>
+knitr::kable(caption = "Month 9 Pressure Average")
+```
+
+```{r}
+outcome_month_10 <- storms_data |> 
+  filter(month == 10) |> 
+  summarize(
+    month_10_mean = mean(pressure, na.rm = TRUE)
+  )
+outcome_month_10 |>
+knitr::kable(caption = "Month 10 Pressure Average")
 ```
 

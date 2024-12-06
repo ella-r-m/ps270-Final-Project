@@ -29,8 +29,9 @@ file.exists("data/storms.csv")
 
 ```{r}
 storms_data <- read.csv("data/storms.csv")
-storms_data
+
 ```
+
 ```{r}
 library(tidyverse)
 library(knitr)

@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/storms.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/storms.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1544,15 +1544,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h2 id="project-thoughts">Project thoughts</h2>
-<p>I am interested in exploring data related to weather and its impact on people’s mood. I think this could be interesting and the results may be relatable to many people.</p>
-<p>How does the month impact the pressure at the time of a hurricane?
-The later the month is (between the months of 6-10) the higher the pressure at the time of a hurricane. The reason why this happens is because peak hurricane time is around late september early october.
-The explanatory variable of interest is the month that it is when a specific hurricane occurs. It is measured based on the date of when the hurricane starts.
-The outcome variable is the pressure of the center of the hurricane. It is measured in milibars.
-What would support it is if as the pressure of the hurricane increased at the same rate of the months changing. What would disprove it is as the months passed the pressure of a hurricane decreased too.
-<a href="https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download" class="uri">https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download</a></p>
-Discussion
-Overall there was a correlation found between pressure and the month that the hurricane occured. As it became later in the year starting in June the pressure decreased until October when there were less hurricanes and the pressure increased.
+<ol type="1">
+<li><p>My research question is how does the month and pressure impact the amount of hurricanes?
+My hypothesis is the later the month and higher the pressure is the higher the number of hurricane. I think this is interesting because the pressure may help indicate when a hurricane will occur. This can help people know when it is safe to travel to areas where there are typically hurricanes.</p></li>
+<li><p>The data source I chose features information about hurricanes from 1975 to 2021. This data lists the months that hurricanes occur along with how many there were in that month. This data is recorded by NOAA the national Ocean and Atmospheric Administration.
+The independent variable is measured based on the date. However the independent variable is measured based on coded amount of hurricanes per month and pressure levels. This plot showcases how one of the dependent variable is measure the amount of hurricanes recorded per month.</p></li>
+</ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span><span class='op'>(</span><span class='st'>"data/storms.csv"</span><span class='op'>)</span></span></code></pre>
@@ -1568,7 +1565,11 @@ Overall there was a correlation found between pressure and the month that the hu
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span></span>
-<span><span class='va'>storms_data</span> <span class='op'>|&gt;</span></span>
+<span></span>
+<span><span class='va'>new_storms_data</span> <span class='op'>&lt;-</span> <span class='va'>storms_data</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>month</span> <span class='op'>==</span> <span class='fl'>9</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>new_storms_data</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>storms</span>,</span>
 <span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>month</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
@@ -1580,6 +1581,33 @@ Overall there was a correlation found between pressure and the month that the hu
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
+<ol start="3" type="1">
+<li><div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span></span>
+<span><span class='va'>storms_data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>storms</span>,</span>
+<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>month</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"Number of Hurricanes that Occur each month"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Month that Hurricane Occurs"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Amount of Hurricanes Recorded"</span></span>
+<span>  <span class='op'>)</span> </span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div></li>
+</ol>
+</div>
+<p>This plot shows that during month 9 there are the most hurricanes. This mean in september there are the most hurricanes. In the early months there are practically no hurricanes. The hurricanes increase leading up to september and decrease after that.
+In term of the effect of pressure on the amount of hurricanes occuring the highest pressure in the center of hurricanes is recorded in month 7. Tharefore there are not the most hurricanes when the pressure is at the highest.</p>
+<p>The reason why this happens is because peak hurricane time is around late september early october.
+The explanatory variable of interest is the month that it is when a specific hurricane occurs. It is measured based on the date of when the hurricane starts.
+The outcome variable is the pressure of the center of the hurricane. It is measured in milibars.
+What would support it is if as the pressure of the hurricane increased at the same rate of the months changing. What would disprove it is as the months passed the pressure of a hurricane decreased too.
+<a href="https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download" class="uri">https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download</a></p>
+<p>overall</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>outcome_month_7</span> <span class='op'>&lt;-</span> <span class='va'>storms_data</span> <span class='op'>|&gt;</span> </span>
@@ -1592,7 +1620,7 @@ Overall there was a correlation found between pressure and the month that the hu
 <span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Month 7 Pressure Average"</span><span class='op'>)</span></span></code></pre>
 </div>
 <table>
-<caption><span id="tab:unnamed-chunk-4">Table 1: </span>Month 7 Pressure Average</caption>
+<caption><span id="tab:unnamed-chunk-5">Table 1: </span>Month 7 Pressure Average</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">month_7_mean</th>
@@ -1616,7 +1644,7 @@ Overall there was a correlation found between pressure and the month that the hu
 <span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Month 8 Pressure Average"</span><span class='op'>)</span></span></code></pre>
 </div>
 <table>
-<caption><span id="tab:unnamed-chunk-5">Table 2: </span>Month 8 Pressure Average</caption>
+<caption><span id="tab:unnamed-chunk-6">Table 2: </span>Month 8 Pressure Average</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">month_8_mean</th>
@@ -1640,7 +1668,7 @@ Overall there was a correlation found between pressure and the month that the hu
 <span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Month 9 Pressure Average"</span><span class='op'>)</span></span></code></pre>
 </div>
 <table>
-<caption><span id="tab:unnamed-chunk-6">Table 3: </span>Month 9 Pressure Average</caption>
+<caption><span id="tab:unnamed-chunk-7">Table 3: </span>Month 9 Pressure Average</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">month_9_mean</th>
@@ -1664,7 +1692,7 @@ Overall there was a correlation found between pressure and the month that the hu
 <span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Month 10 Pressure Average"</span><span class='op'>)</span></span></code></pre>
 </div>
 <table>
-<caption><span id="tab:unnamed-chunk-7">Table 4: </span>Month 10 Pressure Average</caption>
+<caption><span id="tab:unnamed-chunk-8">Table 4: </span>Month 10 Pressure Average</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">month_10_mean</th>

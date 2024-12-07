@@ -11,18 +11,15 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to weather and its impact on people's mood. I think this could be interesting and the results may be relatable to many people.
-
-How does the month impact the pressure at the time of a hurricane?
-The later the month is (between the months of 6-10) the higher the pressure at the time of a hurricane. The reason why this happens is because peak hurricane time is around late september early october.
-The explanatory variable of interest is the month that it is when a specific hurricane occurs. It is measured based on the date of when the hurricane starts.
-The outcome variable is the pressure of the center of the hurricane. It is measured in milibars.
-What would support it is if as the pressure of the hurricane increased at the same rate of the months changing. What would disprove it is as the months passed the pressure of a hurricane decreased too.
-https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download
 
 
-Discussion
-Overall there was a correlation found between pressure and the month that the hurricane occured. As it became later in the year starting in June the pressure decreased until October when there were less hurricanes and the pressure increased.
+1) My research question is how does the month and pressure impact the amount of hurricanes?
+My hypothesis is the later the month and higher the pressure is the higher the number of hurricane. I think this is interesting because the pressure may help indicate when a hurricane will occur. This can help people know when it is safe to travel to areas where there are typically hurricanes.
+
+2) 
+  The data source I chose features information about hurricanes from 1975 to 2021. This data lists the months that hurricanes occur along with how many there were in that month. This data is recorded by NOAA the national Ocean and Atmospheric Administration.
+  The independent variable is measured based on the date. However the independent variable is measured based on coded amount of hurricanes per month and pressure levels. This plot showcases how one of the dependent variable is measure the amount of hurricanes recorded per month.
+
 ```{r}
 file.exists("data/storms.csv")
 ```
@@ -32,6 +29,27 @@ storms_data <- read.csv("data/storms.csv")
 
 ```
 
+```{r}
+library(tidyverse)
+library(knitr)
+
+new_storms_data <- storms_data |> 
+  filter(month == 9)
+
+new_storms_data |>
+  ggplot(data = storms,
+       mapping = aes(x = month)) + 
+  geom_bar() + 
+  labs(
+    title = "Number of Hurricanes that Occur each month",
+    x = "Month that Hurricane Occurs",
+    y = "Amount of Hurricanes Recorded"
+  ) 
+
+
+```
+
+3)
 ```{r}
 library(tidyverse)
 library(knitr)
@@ -47,6 +65,23 @@ storms_data |>
 
 
 ```
+  This plot shows that during month 9 there are the most hurricanes. This mean in september there are the most hurricanes. In the early months there are practically no hurricanes. The hurricanes increase leading up to september and decrease after that. 
+  In term of the effect of pressure on the amount of hurricanes occuring the highest pressure in the center of hurricanes is recorded in month 7. Tharefore there are not the most hurricanes when the pressure is at the highest.
+
+
+The reason why this happens is because peak hurricane time is around late september early october.
+The explanatory variable of interest is the month that it is when a specific hurricane occurs. It is measured based on the date of when the hurricane starts.
+The outcome variable is the pressure of the center of the hurricane. It is measured in milibars.
+What would support it is if as the pressure of the hurricane increased at the same rate of the months changing. What would disprove it is as the months passed the pressure of a hurricane decreased too.
+https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download
+
+overall 
+
+
+
+
+
+
 
 
 ```{r}

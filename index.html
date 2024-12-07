@@ -1612,14 +1612,21 @@ The independent variable is measured based on the date. However the independent 
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>new_pressure</span> <span class='op'>~</span> <span class='va'>new_month</span>, success <span class='op'>=</span> <span class='st'>"High"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in props"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"True"</span>, <span class='st'>"False"</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>regression</span></span></code></pre>
+<span><span class='va'>regression</span> <span class='op'>|&gt;</span> </span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>Response: new_pressure (factor)
-Explanatory: new_month (factor)
-# A tibble: 1 × 1
-      stat
-     &lt;dbl&gt;
-1 -0.00178</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">stat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1627,33 +1634,19 @@ Explanatory: new_month (factor)
 <span><span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>new_pressure</span> <span class='op'>~</span> <span class='va'>new_month</span>, success <span class='op'>=</span> <span class='st'>"High"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"permute"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in props"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"True"</span>, <span class='st'>"False"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>diff_storms_data</span></span></code></pre>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in props"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"True"</span>, <span class='st'>"False"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>Response: new_pressure (factor)
-Explanatory: new_month (factor)
-Null Hypothesis: independence
-# A tibble: 1,000 × 2
-   replicate       stat
-       &lt;int&gt;      &lt;dbl&gt;
- 1         1 -0.00200  
- 2         2 -0.000463 
- 3         3 -0.0000235
- 4         4 -0.000243 
- 5         5 -0.000902 
- 6         6  0.000855 
- 7         7 -0.000243 
- 8         8  0.00151  
- 9         9 -0.000243 
-10        10  0.000196 
-# ℹ 990 more rows</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>diff_storms_data</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
-<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/shade_p_value.html'>shade_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>regression</span>, direction <span class='op'>=</span> <span class='st'>"two sided"</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/shade_p_value.html'>shade_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>regression</span>, direction <span class='op'>=</span> <span class='st'>"two sided"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    title <span class='op'>=</span> <span class='st'>"Difference in Proportion of High vs Low pressure in September"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Proportion of High Pressure Storms"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Amount"</span></span>
+<span>  <span class='op'>)</span> </span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
@@ -1662,12 +1655,21 @@ Null Hypothesis: independence
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>base_p</span> <span class='op'>&lt;-</span> <span class='va'>diff_storms_data</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/get_p_value.html'>get_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>regression</span>, direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>base_p</span></span></code></pre>
+<span><span class='va'>base_p</span> <span class='op'>|&gt;</span> </span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1 × 1
-  p_value
-    &lt;dbl&gt;
-1   0.188</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">p_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.18</td>
+</tr>
+</tbody>
+</table>
 </div>
 <p>What the main coefficient of difference in terms of difference in preportions means is that since it is a negative number non September months have a higher proportion of high pressure storms occuring. The overall proportion of high pressure storms is 0.17 percent lower in the month of September.</p>
 <p>What the P value means is that these findings are not statistically significant. This is because the p value 0.202 is bigger than 0.05 which is too large of a p value to be statistically significant. There is a 20.2 percent chance that the difference is due to random variation in the sample. The null hypothesis is not rejected. We should not interpret this relationship as causal. There is no relationship between these variables.</p>
@@ -1675,7 +1677,7 @@ Null Hypothesis: independence
 <li>The overall results are that storms that occur during the month of September (when the most storms are present) do not have the highest pressure levels at their center. Tharefore my hypothesis is not supported. However there are limitations to this analysis the findings were not statistically significant. This means that there is a large margin for error 20% where alterior variables may have effected results. Tharefor it is hard to say the results I found are true. If I had more time I would purchase better equipment to measure pressure levels to ensure they are accurate. I would also hire researchers to comb through the data recorded to ensure no hurricanes were left out.</li>
 </ol>
 <p><a href="https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download" class="uri">https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download</a></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

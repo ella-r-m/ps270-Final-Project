@@ -76,7 +76,8 @@ regression <- storms_data |>
   specify(new_pressure ~ new_month, success = "High") |> 
   calculate(stat = "diff in props", order = c("True", "False"))
 
-regression
+regression |> 
+knitr::kable(digits = 2)
 ```
   
 ```{r}
@@ -86,22 +87,29 @@ specify(new_pressure ~ new_month, success = "High") |>
   generate(reps = 1000, type = "permute") |> 
   calculate(stat = "diff in props", order = c("True", "False"))
 
-diff_storms_data
+
   
 ```
 ```{r}
 diff_storms_data |> 
   visualize() + 
-  shade_p_value(obs_stat = regression, direction = "two sided")
+  shade_p_value(obs_stat = regression, direction = "two sided") + 
+  labs(
+    title = "Difference in Proportion of High vs Low pressure in September",
+    x = "Proportion of High Pressure Storms",
+    y = "Amount"
+  ) 
 ```
 
 ```{r}
 base_p <- diff_storms_data |>
   get_p_value(obs_stat = regression, direction = "both")
 
-base_p
+base_p |> 
+knitr::kable(digits = 2)
 ```
 
+  
   What the main coefficient of difference in terms of difference in preportions means is that since it is a negative number non September months have a higher proportion of high pressure storms occuring. The overall proportion of high pressure storms is 0.17 percent lower in the month of September. 
   
   What the P value means is that these findings are not statistically significant. This is because the p value 0.202 is bigger than 0.05 which is too large of a p value to be statistically significant. There is a 20.2 percent chance that the difference is due to random variation in the sample. The null hypothesis is not rejected. We should not interpret this relationship as causal. There is no relationship between these variables. 

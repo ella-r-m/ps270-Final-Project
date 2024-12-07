@@ -101,6 +101,7 @@ diff_storms_data |>
   ) 
 ```
 
+
 ```{r}
 base_p <- diff_storms_data |>
   get_p_value(obs_stat = regression, direction = "both")

@@ -13,12 +13,12 @@ output:
 
 
 
-1) My research question is how does the month and pressure impact the amount of hurricanes?
-My hypothesis is the later the month and higher the pressure is the higher the number of hurricane. I think this is interesting because the pressure may help indicate when a hurricane will occur. This can help people know when it is safe to travel to areas where there are typically hurricanes.
+1) My research question is how does the month impact the pressure at the center of a hurricane in the Atlantic?
+My hypothesis is in month 9 when there are the most hurricanes the pressure in the center of those hurricanes will be the strongest. I will be looking at how many hurricanes occured in month 9 at 1014 millibars of presure. I chose 1014 as my measure of high pressure because it is near the highest pressure recorded in the data set. This will be the case because since there are the most hurricanes during this month it is optimal conditions and leads to stronger hurricanes. I think this is interesting because the pressure may help indicate when a hurricane will occur. This can help people know when it is safe to travel to areas where there are typically hurricanes.
 
 2) 
   The data source I chose features information about hurricanes from 1975 to 2021. This data lists the months that hurricanes occur along with how many there were in that month. This data is recorded by NOAA the national Ocean and Atmospheric Administration.
-  The independent variable is measured based on the date. However the independent variable is measured based on coded amount of hurricanes per month and pressure levels. This plot showcases how one of the dependent variable is measure the amount of hurricanes recorded per month.
+  The independent variable is measured based on the date. However the independent variable is measured based on coded amount of hurricanes per month and pressure levels. This plot showcases the dependent variable pressure at the center of hurricanes.
 
 ```{r}
 file.exists("data/storms.csv")
@@ -38,11 +38,11 @@ new_storms_data <- storms_data |>
 
 new_storms_data |>
   ggplot(data = storms,
-       mapping = aes(x = month)) + 
+       mapping = aes(x = pressure)) + 
   geom_bar() + 
   labs(
     title = "Number of Hurricanes that Occur each month",
-    x = "Month that Hurricane Occurs",
+    x = "Pressure of Hurricane",
     y = "Amount of Hurricanes Recorded"
   ) 
 
@@ -65,17 +65,56 @@ storms_data |>
 
 
 ```
-  This plot shows that during month 9 there are the most hurricanes. This mean in september there are the most hurricanes. In the early months there are practically no hurricanes. The hurricanes increase leading up to september and decrease after that. 
-  In term of the effect of pressure on the amount of hurricanes occuring the highest pressure in the center of hurricanes is recorded in month 7. Tharefore there are not the most hurricanes when the pressure is at the highest.
+```{r}
+library(infer)
+storms_data <- storms_data |> 
+  mutate(new_month = if_else(month == 9, "True", "False") |> as.factor(), new_pressure = if_else(pressure == 1014, "High", "Low") |> as.factor())
+  
 
 
-The reason why this happens is because peak hurricane time is around late september early october.
-The explanatory variable of interest is the month that it is when a specific hurricane occurs. It is measured based on the date of when the hurricane starts.
-The outcome variable is the pressure of the center of the hurricane. It is measured in milibars.
-What would support it is if as the pressure of the hurricane increased at the same rate of the months changing. What would disprove it is as the months passed the pressure of a hurricane decreased too.
+regression <- storms_data |> 
+  specify(new_pressure ~ new_month, success = "High") |> 
+  calculate(stat = "diff in props", order = c("True", "False"))
+
+regression
+```
+  
+```{r}
+diff_storms_data <- storms_data |> 
+specify(new_pressure ~ new_month, success = "High") |> 
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |> 
+  calculate(stat = "diff in props", order = c("True", "False"))
+
+diff_storms_data
+  
+```
+```{r}
+diff_storms_data |> 
+  visualize() + 
+  shade_p_value(obs_stat = regression, direction = "two sided")
+```
+
+```{r}
+base_p <- diff_storms_data |>
+  get_p_value(obs_stat = regression, direction = "both")
+
+base_p
+```
+
+  What the main coefficient of difference in terms of difference in preportions means is that since it is a negative number non September months have a higher proportion of high pressure storms occuring. The overall proportion of high pressure storms is 0.17 percent lower in the month of September. 
+  
+  What the P value means is that these findings are not statistically significant. This is because the p value 0.202 is bigger than 0.05 which is too large of a p value to be statistically significant. There is a 20.2 percent chance that the difference is due to random variation in the sample. The null hypothesis is not rejected. We should not interpret this relationship as causal. There is no relationship between these variables. 
+ 
+
+4) 
+The overall results are that storms that occur during the month of September (when the most storms are present) do not have the highest pressure levels at their center. Tharefore my hypothesis is not supported. However there are limitations to this analysis the findings were not statistically significant. This means that there is a large margin for error 20% where alterior variables may have effected results. Tharefor it is hard to say the results I found are true. If I had more time I would purchase better equipment to measure pressure levels to ensure they are accurate. I would also hire researchers to comb through the data recorded to ensure no hurricanes were left out. 
+
+
+
+
 https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download
 
-overall 
 
 
 
@@ -84,49 +123,15 @@ overall
 
 
 
-```{r}
-outcome_month_7 <- storms_data |> 
-  filter(month == 7) |> 
-  summarize(
-    month_7_mean = mean(pressure, na.rm = TRUE)
-  )
-
-outcome_month_7 |>
-knitr::kable(caption = "Month 7 Pressure Average")
-```
 
 
 
 
 
-```{r}
 
 
-outcome_month_8 <- storms_data |> 
-  filter(month == 8) |> 
-  summarize(
-    month_8_mean = mean(pressure, na.rm = TRUE)
-  )
-outcome_month_8 |>
-knitr::kable(caption = "Month 8 Pressure Average")
-```
-```{r}
-outcome_month_9 <- storms_data |> 
-  filter(month == 9) |> 
-  summarize(
-    month_9_mean = mean(pressure, na.rm = TRUE)
-  )
-outcome_month_9 |>
-knitr::kable(caption = "Month 9 Pressure Average")
-```
 
-```{r}
-outcome_month_10 <- storms_data |> 
-  filter(month == 10) |> 
-  summarize(
-    month_10_mean = mean(pressure, na.rm = TRUE)
-  )
-outcome_month_10 |>
-knitr::kable(caption = "Month 10 Pressure Average")
-```
+
+
+
 

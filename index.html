@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/storms.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/storms.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1545,10 +1545,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <h2 id="project-thoughts">Project thoughts</h2>
 <ol type="1">
-<li><p>My research question is how does the month and pressure impact the amount of hurricanes?
-My hypothesis is the later the month and higher the pressure is the higher the number of hurricane. I think this is interesting because the pressure may help indicate when a hurricane will occur. This can help people know when it is safe to travel to areas where there are typically hurricanes.</p></li>
+<li><p>My research question is how does the month impact the pressure at the center of a hurricane in the Atlantic?
+My hypothesis is in month 9 when there are the most hurricanes the pressure in the center of those hurricanes will be the strongest. I will be looking at how many hurricanes occured in month 9 at 1014 millibars of presure. I chose 1014 as my measure of high pressure because it is near the highest pressure recorded in the data set. This will be the case because since there are the most hurricanes during this month it is optimal conditions and leads to stronger hurricanes. I think this is interesting because the pressure may help indicate when a hurricane will occur. This can help people know when it is safe to travel to areas where there are typically hurricanes.</p></li>
 <li><p>The data source I chose features information about hurricanes from 1975 to 2021. This data lists the months that hurricanes occur along with how many there were in that month. This data is recorded by NOAA the national Ocean and Atmospheric Administration.
-The independent variable is measured based on the date. However the independent variable is measured based on coded amount of hurricanes per month and pressure levels. This plot showcases how one of the dependent variable is measure the amount of hurricanes recorded per month.</p></li>
+The independent variable is measured based on the date. However the independent variable is measured based on coded amount of hurricanes per month and pressure levels. This plot showcases the dependent variable pressure at the center of hurricanes.</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1571,11 +1571,11 @@ The independent variable is measured based on the date. However the independent 
 <span></span>
 <span><span class='va'>new_storms_data</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>storms</span>,</span>
-<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>month</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>pressure</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
 <span>    title <span class='op'>=</span> <span class='st'>"Number of Hurricanes that Occur each month"</span>,</span>
-<span>    x <span class='op'>=</span> <span class='st'>"Month that Hurricane Occurs"</span>,</span>
+<span>    x <span class='op'>=</span> <span class='st'>"Pressure of Hurricane"</span>,</span>
 <span>    y <span class='op'>=</span> <span class='st'>"Amount of Hurricanes Recorded"</span></span>
 <span>  <span class='op'>)</span> </span></code></pre>
 </div>
@@ -1600,112 +1600,82 @@ The independent variable is measured based on the date. However the independent 
 </div></li>
 </ol>
 </div>
-<p>This plot shows that during month 9 there are the most hurricanes. This mean in september there are the most hurricanes. In the early months there are practically no hurricanes. The hurricanes increase leading up to september and decrease after that.
-In term of the effect of pressure on the amount of hurricanes occuring the highest pressure in the center of hurricanes is recorded in month 7. Tharefore there are not the most hurricanes when the pressure is at the highest.</p>
-<p>The reason why this happens is because peak hurricane time is around late september early october.
-The explanatory variable of interest is the month that it is when a specific hurricane occurs. It is measured based on the date of when the hurricane starts.
-The outcome variable is the pressure of the center of the hurricane. It is measured in milibars.
-What would support it is if as the pressure of the hurricane increased at the same rate of the months changing. What would disprove it is as the months passed the pressure of a hurricane decreased too.
-<a href="https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download" class="uri">https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download</a></p>
-<p>overall</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>outcome_month_7</span> <span class='op'>&lt;-</span> <span class='va'>storms_data</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>month</span> <span class='op'>==</span> <span class='fl'>7</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span></span>
-<span>    month_7_mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>pressure</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span>  <span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/infer'>infer</a></span><span class='op'>)</span></span>
+<span><span class='va'>storms_data</span> <span class='op'>&lt;-</span> <span class='va'>storms_data</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>new_month <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>month</span> <span class='op'>==</span> <span class='fl'>9</span>, <span class='st'>"True"</span>, <span class='st'>"False"</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='op'>)</span>, new_pressure <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>pressure</span> <span class='op'>==</span> <span class='fl'>1014</span>, <span class='st'>"High"</span>, <span class='st'>"Low"</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  </span>
 <span></span>
-<span><span class='va'>outcome_month_7</span> <span class='op'>|&gt;</span></span>
-<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Month 7 Pressure Average"</span><span class='op'>)</span></span></code></pre>
+<span></span>
+<span><span class='va'>regression</span> <span class='op'>&lt;-</span> <span class='va'>storms_data</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>new_pressure</span> <span class='op'>~</span> <span class='va'>new_month</span>, success <span class='op'>=</span> <span class='st'>"High"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in props"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"True"</span>, <span class='st'>"False"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>regression</span></span></code></pre>
 </div>
-<table>
-<caption><span id="tab:unnamed-chunk-5">Table 1: </span>Month 7 Pressure Average</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">month_7_mean</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1001.508</td>
-</tr>
-</tbody>
-</table>
+<pre><code>Response: new_pressure (factor)
+Explanatory: new_month (factor)
+# A tibble: 1 × 1
+      stat
+     &lt;dbl&gt;
+1 -0.00178</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>outcome_month_8</span> <span class='op'>&lt;-</span> <span class='va'>storms_data</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>month</span> <span class='op'>==</span> <span class='fl'>8</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span></span>
-<span>    month_8_mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>pressure</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span>  <span class='op'>)</span></span>
-<span><span class='va'>outcome_month_8</span> <span class='op'>|&gt;</span></span>
-<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Month 8 Pressure Average"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>diff_storms_data</span> <span class='op'>&lt;-</span> <span class='va'>storms_data</span> <span class='op'>|&gt;</span> </span>
+<span><span class='fu'><a href='https://infer.tidymodels.org/reference/specify.html'>specify</a></span><span class='op'>(</span><span class='va'>new_pressure</span> <span class='op'>~</span> <span class='va'>new_month</span>, success <span class='op'>=</span> <span class='st'>"High"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/hypothesize.html'>hypothesize</a></span><span class='op'>(</span>null <span class='op'>=</span> <span class='st'>"independence"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/generate.html'>generate</a></span><span class='op'>(</span>reps <span class='op'>=</span> <span class='fl'>1000</span>, type <span class='op'>=</span> <span class='st'>"permute"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/calculate.html'>calculate</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"diff in props"</span>, order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"True"</span>, <span class='st'>"False"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>diff_storms_data</span></span></code></pre>
 </div>
-<table>
-<caption><span id="tab:unnamed-chunk-6">Table 2: </span>Month 8 Pressure Average</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">month_8_mean</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">996.1106</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>outcome_month_9</span> <span class='op'>&lt;-</span> <span class='va'>storms_data</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>month</span> <span class='op'>==</span> <span class='fl'>9</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span></span>
-<span>    month_9_mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>pressure</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span>  <span class='op'>)</span></span>
-<span><span class='va'>outcome_month_9</span> <span class='op'>|&gt;</span></span>
-<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Month 9 Pressure Average"</span><span class='op'>)</span></span></code></pre>
-</div>
-<table>
-<caption><span id="tab:unnamed-chunk-7">Table 3: </span>Month 9 Pressure Average</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">month_9_mean</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">990.083</td>
-</tr>
-</tbody>
-</table>
+<pre><code>Response: new_pressure (factor)
+Explanatory: new_month (factor)
+Null Hypothesis: independence
+# A tibble: 1,000 × 2
+   replicate       stat
+       &lt;int&gt;      &lt;dbl&gt;
+ 1         1 -0.00200  
+ 2         2 -0.000463 
+ 3         3 -0.0000235
+ 4         4 -0.000243 
+ 5         5 -0.000902 
+ 6         6  0.000855 
+ 7         7 -0.000243 
+ 8         8  0.00151  
+ 9         9 -0.000243 
+10        10  0.000196 
+# ℹ 990 more rows</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>outcome_month_10</span> <span class='op'>&lt;-</span> <span class='va'>storms_data</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>month</span> <span class='op'>==</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span></span>
-<span>    month_10_mean <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>pressure</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span>  <span class='op'>)</span></span>
-<span><span class='va'>outcome_month_10</span> <span class='op'>|&gt;</span></span>
-<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>caption <span class='op'>=</span> <span class='st'>"Month 10 Pressure Average"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>diff_storms_data</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/shade_p_value.html'>shade_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>regression</span>, direction <span class='op'>=</span> <span class='st'>"two sided"</span><span class='op'>)</span></span></code></pre>
 </div>
-<table>
-<caption><span id="tab:unnamed-chunk-8">Table 4: </span>Month 10 Pressure Average</caption>
-<thead>
-<tr class="header">
-<th style="text-align: right;">month_10_mean</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">991.3984</td>
-</tr>
-</tbody>
-</table>
+<p><img src="index_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>base_p</span> <span class='op'>&lt;-</span> <span class='va'>diff_storms_data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://infer.tidymodels.org/reference/get_p_value.html'>get_p_value</a></span><span class='op'>(</span>obs_stat <span class='op'>=</span> <span class='va'>regression</span>, direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>base_p</span></span></code></pre>
+</div>
+<pre><code># A tibble: 1 × 1
+  p_value
+    &lt;dbl&gt;
+1   0.188</code></pre>
+</div>
+<p>What the main coefficient of difference in terms of difference in preportions means is that since it is a negative number non September months have a higher proportion of high pressure storms occuring. The overall proportion of high pressure storms is 0.17 percent lower in the month of September.</p>
+<p>What the P value means is that these findings are not statistically significant. This is because the p value 0.202 is bigger than 0.05 which is too large of a p value to be statistically significant. There is a 20.2 percent chance that the difference is due to random variation in the sample. The null hypothesis is not rejected. We should not interpret this relationship as causal. There is no relationship between these variables.</p>
+<ol start="4" type="1">
+<li>The overall results are that storms that occur during the month of September (when the most storms are present) do not have the highest pressure levels at their center. Tharefore my hypothesis is not supported. However there are limitations to this analysis the findings were not statistically significant. This means that there is a large margin for error 20% where alterior variables may have effected results. Tharefor it is hard to say the results I found are true. If I had more time I would purchase better equipment to measure pressure levels to ensure they are accurate. I would also hire researchers to comb through the data recorded to ensure no hurricanes were left out.</li>
+</ol>
+<p><a href="https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download" class="uri">https://www.kaggle.com/datasets/utkarshx27/noaa-atlantic-hurricane-database?resource=download</a></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
